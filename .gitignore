@@ -1,4 +1,9 @@
 ### Python ###
+*.png
+*.jpg
+*.jpeg
+*.ckpt
+models/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
