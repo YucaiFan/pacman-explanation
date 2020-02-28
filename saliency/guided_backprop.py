@@ -72,7 +72,7 @@ class GuidedBackprop(SaliencyMask):
       guided_feed_dict = {}
       for tensor in feed_dict:
         guided_feed_dict[tensor.name] = feed_dict[tensor]
-      guided_feed_dict[self.x.name] = [x_value]
+      guided_feed_dict[self.x.name] = x_value
 
     return self.guided_sess.run(
         self.guided_grads_node, feed_dict = guided_feed_dict)[0]

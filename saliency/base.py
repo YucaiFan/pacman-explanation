@@ -93,5 +93,5 @@ class GradientSaliency(SaliencyMask):
       x_value: Input value, not batched.
       feed_dict: (Optional) feed dictionary to pass to the session.run call.
     """
-    feed_dict[self.x] = [x_value]
+    feed_dict[self.x] = x_value
     return self.session.run(self.gradients_node, feed_dict=feed_dict)[0]
