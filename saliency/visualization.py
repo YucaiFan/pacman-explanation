@@ -15,25 +15,25 @@
 import numpy as np
 
 def VisualizeImageGrayscale(image_3d, percentile=99):
-  r"""Returns a 3D tensor as a grayscale 2D tensor.
+    r"""Returns a 3D tensor as a grayscale 2D tensor.
 
-  This method sums a 3D tensor across the absolute value of axis=2, and then
-  clips values at a given percentile.
-  """
-  image_2d = np.sum(np.abs(image_3d), axis=2)
+    This method sums a 3D tensor across the absolute value of axis=2, and then
+    clips values at a given percentile.
+    """
+    image_2d = np.sum(np.abs(image_3d), axis=3)[0,...]
 
-  vmax = np.percentile(image_2d, percentile)
-  vmin = np.min(image_2d)
+    vmax = np.percentile(image_2d, percentile)
+    vmin = np.min(image_2d)
 
-  return np.clip((image_2d - vmin) / (vmax - vmin), 0, 1)
+    return np.clip((image_2d - vmin) / (vmax - vmin), 0, 1)
 
 def VisualizeImageDiverging(image_3d, percentile=99):
-  r"""Returns a 3D tensor as a 2D tensor with positive and negative values.
-  """
-  image_2d = np.sum(image_3d, axis=2)
+    r"""Returns a 3D tensor as a 2D tensor with positive and negative values.
+    """
+    image_2d = np.sum(image_3d, axis=2)
 
-  span = abs(np.percentile(image_2d, percentile))
-  vmin = -span
-  vmax = span
+    span = abs(np.percentile(image_2d, percentile))
+    vmin = -span
+    vmax = span
 
-  return np.clip((image_2d - vmin) / (vmax - vmin), -1, 1)
+    return np.clip((image_2d - vmin) / (vmax - vmin), -1, 1)
